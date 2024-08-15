@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace LinearProgrammingSolver
+namespace LPR_Project
 {
     class Program
     {

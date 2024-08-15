@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.OrTools" Version="9.4.1874" />
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

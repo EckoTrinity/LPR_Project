@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LPR_Project;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LPR_Project
 {
