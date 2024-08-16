@@ -65,7 +65,7 @@
             metroSetPanel1.IsDerivedStyle = true;
             metroSetPanel1.Location = new Point(15, 50);
             metroSetPanel1.Name = "metroSetPanel1";
-            metroSetPanel1.Size = new Size(267, 175);
+            metroSetPanel1.Size = new Size(267, 268);
             metroSetPanel1.Style = MetroSet_UI.Enums.Style.Dark;
             metroSetPanel1.StyleManager = null;
             metroSetPanel1.TabIndex = 8;
@@ -76,7 +76,7 @@
             // 
             lblImport.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
             lblImport.IsDerivedStyle = true;
-            lblImport.Location = new Point(7, 4);
+            lblImport.Location = new Point(4, 4);
             lblImport.Margin = new Padding(4, 0, 4, 0);
             lblImport.Name = "lblImport";
             lblImport.Size = new Size(217, 22);
@@ -97,7 +97,7 @@
             btnFile.HoverColor = Color.FromArgb(144, 228, 193);
             btnFile.HoverTextColor = Color.White;
             btnFile.IsDerivedStyle = true;
-            btnFile.Location = new Point(74, 133);
+            btnFile.Location = new Point(72, 212);
             btnFile.Name = "btnFile";
             btnFile.NormalBorderColor = Color.Teal;
             btnFile.NormalColor = Color.Teal;
@@ -122,9 +122,9 @@
             pnlDragnDrop.BorderThickness = 1;
             pnlDragnDrop.Controls.Add(lblDrop);
             pnlDragnDrop.IsDerivedStyle = true;
-            pnlDragnDrop.Location = new Point(36, 38);
+            pnlDragnDrop.Location = new Point(16, 38);
             pnlDragnDrop.Name = "pnlDragnDrop";
-            pnlDragnDrop.Size = new Size(213, 89);
+            pnlDragnDrop.Size = new Size(233, 154);
             pnlDragnDrop.Style = MetroSet_UI.Enums.Style.Dark;
             pnlDragnDrop.StyleManager = null;
             pnlDragnDrop.TabIndex = 8;
@@ -217,7 +217,19 @@
             rtbOutput.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             rtbOutput.HoverColor = Color.FromArgb(170, 170, 170);
             rtbOutput.IsDerivedStyle = true;
-            rtbOutput.Lines = (new string[] { "", "", "", "\t\t\t", "", "", "", "", "", "\t\t\t\tFind a solution first..." });
+            rtbOutput.Lines = new string[]
+    {
+    "",
+    "",
+    "",
+    "\t\t\t",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "\t\t\t\tFind a solution first..."
+    };
             rtbOutput.Location = new Point(3, 38);
             rtbOutput.MaxLength = 32767;
             rtbOutput.Name = "rtbOutput";
@@ -283,7 +295,7 @@
             lblFileOutput.Style = MetroSet_UI.Enums.Style.Dark;
             lblFileOutput.StyleManager = null;
             lblFileOutput.TabIndex = 8;
-            lblFileOutput.Text = "Your file:";
+            lblFileOutput.Text = "Sensitivity Analysis:";
             lblFileOutput.ThemeAuthor = "Narwin";
             lblFileOutput.ThemeName = "MetroDark";
             // 
@@ -297,9 +309,9 @@
             metroSetPanel6.Controls.Add(metroSetLabel9);
             metroSetPanel6.Controls.Add(lblSolve);
             metroSetPanel6.IsDerivedStyle = true;
-            metroSetPanel6.Location = new Point(15, 229);
+            metroSetPanel6.Location = new Point(13, 324);
             metroSetPanel6.Name = "metroSetPanel6";
-            metroSetPanel6.Size = new Size(267, 114);
+            metroSetPanel6.Size = new Size(269, 149);
             metroSetPanel6.Style = MetroSet_UI.Enums.Style.Dark;
             metroSetPanel6.StyleManager = null;
             metroSetPanel6.TabIndex = 12;
@@ -316,7 +328,7 @@
             btnSolve.HoverColor = Color.FromArgb(83, 215, 105);
             btnSolve.HoverTextColor = Color.White;
             btnSolve.IsDerivedStyle = true;
-            btnSolve.Location = new Point(74, 73);
+            btnSolve.Location = new Point(74, 101);
             btnSolve.Name = "btnSolve";
             btnSolve.NormalBorderColor = Color.FromArgb(70, 194, 99);
             btnSolve.NormalColor = Color.FromArgb(70, 194, 99);
@@ -351,7 +363,7 @@
             cboMethod.IsDerivedStyle = true;
             cboMethod.ItemHeight = 20;
             cboMethod.Items.AddRange(new object[] { "Primal Simplex", "Dual Simplex", "Branch and Bound", "Cutting Plane" });
-            cboMethod.Location = new Point(77, 36);
+            cboMethod.Location = new Point(42, 54);
             cboMethod.Margin = new Padding(4);
             cboMethod.Name = "cboMethod";
             cboMethod.SelectedItemBackColor = Color.FromArgb(65, 177, 225);
@@ -367,7 +379,7 @@
             // 
             metroSetLabel9.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             metroSetLabel9.IsDerivedStyle = true;
-            metroSetLabel9.Location = new Point(7, 40);
+            metroSetLabel9.Location = new Point(98, 28);
             metroSetLabel9.Margin = new Padding(4, 0, 4, 0);
             metroSetLabel9.Name = "metroSetLabel9";
             metroSetLabel9.Size = new Size(62, 22);
@@ -382,10 +394,10 @@
             // 
             lblSolve.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
             lblSolve.IsDerivedStyle = true;
-            lblSolve.Location = new Point(7, 0);
+            lblSolve.Location = new Point(4, 3);
             lblSolve.Margin = new Padding(4, 0, 4, 0);
             lblSolve.Name = "lblSolve";
-            lblSolve.Size = new Size(184, 22);
+            lblSolve.Size = new Size(79, 22);
             lblSolve.Style = MetroSet_UI.Enums.Style.Dark;
             lblSolve.StyleManager = null;
             lblSolve.TabIndex = 8;
