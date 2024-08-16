@@ -215,7 +215,8 @@ namespace LPR381_Project
 
         public void ExportSolutionsToFile(string problemType, List<string> columnHeaders, List<string> rowHeaders)
         {
-            string filePath = "C:\\Users\\rishc\\source\\repos\\Output.txt";
+            string projectDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            string filePath = Path.Combine(projectDirectory, "Solutions", "BranchAndBound.txt");
             var branchQueue = new Queue<BranchTable>();
             var solutions = new List<BranchTable>();
 

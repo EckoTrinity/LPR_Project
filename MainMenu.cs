@@ -305,7 +305,8 @@ namespace LPR381_Project
                     List<List<double[,]>> cpResultList = cp.SolveCuttingPlane();
                     List<double[,]> cpResult = new List<double[,]>();
 
-                    string filePath = "C:\\Users\\rishc\\source\\repos\\Output.txt";
+                    string projectDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+                    string filePath = Path.Combine(projectDirectory, "Solutions", "CuttingPlane.txt");
 
                     cp.SaveResultsToFile(filePath);
 

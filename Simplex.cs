@@ -167,6 +167,10 @@ namespace LPR381_Project
 
             } while (!optimalSolutionFound);
 
+            string projectDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            string filePath = Path.Combine(projectDirectory, "Solutions", "DualSimplex.txt");
+            WriteTableausToFile(tableaus, filePath);
+
             return tableaus;
         }
 
@@ -260,7 +264,33 @@ namespace LPR381_Project
 
             } while (!optimalSolutionFound);
 
+            string projectDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            string filePath = Path.Combine(projectDirectory, "Solutions", "PrimalSimplex.txt");
+            WriteTableausToFile(tableaus, filePath);
+
             return tableaus;
+        }
+
+        private void WriteTableausToFile(List<double[,]> tableaus, string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                int iteration = 1;
+                foreach (var tableau in tableaus)
+                {
+                    writer.WriteLine($"Iteration {iteration}:");
+                    for (int row = 0; row < tableau.GetLength(0); row++)
+                    {
+                        for (int col = 0; col < tableau.GetLength(1); col++)
+                        {
+                            writer.Write(tableau[row, col].ToString("F4") + "\t");
+                        }
+                        writer.WriteLine();
+                    }
+                    writer.WriteLine();
+                    iteration++;
+                }
+            }
         }
     }
 }
