@@ -26,17 +26,17 @@ namespace LPR381_Project
         }
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            rtbFileOutput.BackColor = Color.FromArgb(30, 30, 30);
-            rtbFileOutput.BorderColor = Color.FromArgb(30, 30, 30);
+            rtbFileOutput.BackColor = Color.FromArgb(61, 61, 58);
+            rtbFileOutput.BorderColor = Color.FromArgb(61, 61, 58);
 
-            rtbOutput.BackColor = Color.FromArgb(30, 30, 30);
-            rtbOutput.BorderColor = Color.FromArgb(30, 30, 30);
+            rtbOutput.BackColor = Color.FromArgb(61, 61, 58);
+            rtbOutput.BorderColor = Color.FromArgb(61, 61, 58);
 
 
-            lblCASolution.ForeColor = Color.FromArgb(28, 131, 174);
-            lblImport.ForeColor = Color.FromArgb(28, 131, 174);
-            lblFileOutput.ForeColor = Color.FromArgb(28, 131, 174);
-            lblSolve.ForeColor = Color.FromArgb(28, 131, 174);
+            lblCASolution.ForeColor = Color.FromArgb(227, 235, 138);
+            lblImport.ForeColor = Color.FromArgb(227, 235, 138);
+            lblFileOutput.ForeColor = Color.FromArgb(227, 235, 138);
+            lblSolve.ForeColor = Color.FromArgb(227, 235, 138);
 
 
 
