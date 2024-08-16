@@ -96,7 +96,7 @@
             btnFile.HoverColor = Color.FromArgb(95, 207, 255);
             btnFile.HoverTextColor = Color.White;
             btnFile.IsDerivedStyle = true;
-            btnFile.Location = new Point(77, 125);
+            btnFile.Location = new Point(74, 125);
             btnFile.Name = "btnFile";
             btnFile.NormalBorderColor = Color.FromArgb(65, 177, 225);
             btnFile.NormalColor = Color.FromArgb(65, 177, 225);
@@ -153,9 +153,10 @@
             metroSetPanel4.BorderColor = Color.FromArgb(110, 110, 110);
             metroSetPanel4.BorderThickness = 1;
             metroSetPanel4.Controls.Add(btnCAOutputClear);
+            metroSetPanel4.Controls.Add(lblCASolution);
             metroSetPanel4.Controls.Add(rtbOutput);
             metroSetPanel4.IsDerivedStyle = true;
-            metroSetPanel4.Location = new Point(589, 93);
+            metroSetPanel4.Location = new Point(559, 50);
             metroSetPanel4.Name = "metroSetPanel4";
             metroSetPanel4.Size = new Size(538, 426);
             metroSetPanel4.Style = MetroSet_UI.Enums.Style.Dark;
@@ -174,7 +175,7 @@
             btnCAOutputClear.HoverColor = Color.FromArgb(95, 207, 255);
             btnCAOutputClear.HoverTextColor = Color.White;
             btnCAOutputClear.IsDerivedStyle = true;
-            btnCAOutputClear.Location = new Point(204, 3);
+            btnCAOutputClear.Location = new Point(203, 3);
             btnCAOutputClear.Name = "btnCAOutputClear";
             btnCAOutputClear.NormalBorderColor = Color.FromArgb(65, 177, 225);
             btnCAOutputClear.NormalColor = Color.FromArgb(65, 177, 225);
@@ -182,7 +183,7 @@
             btnCAOutputClear.PressBorderColor = Color.FromArgb(35, 147, 195);
             btnCAOutputClear.PressColor = Color.FromArgb(35, 147, 195);
             btnCAOutputClear.PressTextColor = Color.White;
-            btnCAOutputClear.Size = new Size(117, 34);
+            btnCAOutputClear.Size = new Size(117, 32);
             btnCAOutputClear.Style = MetroSet_UI.Enums.Style.Light;
             btnCAOutputClear.StyleManager = null;
             btnCAOutputClear.TabIndex = 10;
@@ -195,9 +196,9 @@
             // 
             lblCASolution.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
             lblCASolution.IsDerivedStyle = true;
-            lblCASolution.Location = new Point(589, 67);
+            lblCASolution.Location = new Point(3, 3);
             lblCASolution.Name = "lblCASolution";
-            lblCASolution.Size = new Size(433, 23);
+            lblCASolution.Size = new Size(208, 23);
             lblCASolution.Style = MetroSet_UI.Enums.Style.Dark;
             lblCASolution.StyleManager = null;
             lblCASolution.TabIndex = 7;
@@ -215,24 +216,12 @@
             rtbOutput.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             rtbOutput.HoverColor = Color.FromArgb(170, 170, 170);
             rtbOutput.IsDerivedStyle = true;
-            rtbOutput.Lines = new string[]
-    {
-    "",
-    "",
-    "",
-    "\t\t\t",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "\t\t\t\tNothing to see here..."
-    };
-            rtbOutput.Location = new Point(3, 30);
+            rtbOutput.Lines = (new string[] { "", "", "", "\t\t\t", "", "", "", "", "", "\t\t\t\tNothing to see here..." });
+            rtbOutput.Location = new Point(3, 38);
             rtbOutput.MaxLength = 32767;
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = false;
-            rtbOutput.Size = new Size(527, 393);
+            rtbOutput.Size = new Size(527, 385);
             rtbOutput.Style = MetroSet_UI.Enums.Style.Dark;
             rtbOutput.StyleManager = null;
             rtbOutput.TabIndex = 6;
@@ -249,9 +238,9 @@
             metroSetPanel5.Controls.Add(rtbFileOutput);
             metroSetPanel5.Controls.Add(lblFileOutput);
             metroSetPanel5.IsDerivedStyle = true;
-            metroSetPanel5.Location = new Point(286, 49);
+            metroSetPanel5.Location = new Point(286, 50);
             metroSetPanel5.Name = "metroSetPanel5";
-            metroSetPanel5.Size = new Size(267, 176);
+            metroSetPanel5.Size = new Size(267, 423);
             metroSetPanel5.Style = MetroSet_UI.Enums.Style.Dark;
             metroSetPanel5.StyleManager = null;
             metroSetPanel5.TabIndex = 9;
@@ -273,7 +262,7 @@
             rtbFileOutput.MaxLength = 32767;
             rtbFileOutput.Name = "rtbFileOutput";
             rtbFileOutput.ReadOnly = false;
-            rtbFileOutput.Size = new Size(252, 147);
+            rtbFileOutput.Size = new Size(252, 397);
             rtbFileOutput.Style = MetroSet_UI.Enums.Style.Dark;
             rtbFileOutput.StyleManager = null;
             rtbFileOutput.TabIndex = 9;
@@ -411,7 +400,7 @@
             cbForm.CloseNormalForeColor = Color.Gray;
             cbForm.DisabledForeColor = Color.DimGray;
             cbForm.IsDerivedStyle = true;
-            cbForm.Location = new Point(1816, 4);
+            cbForm.Location = new Point(997, 19);
             cbForm.MaximizeBox = true;
             cbForm.MaximizeHoverBackColor = Color.FromArgb(238, 238, 238);
             cbForm.MaximizeHoverForeColor = Color.Gray;
@@ -436,13 +425,13 @@
             AutoSize = true;
             BackgroundColor = Color.FromArgb(30, 30, 30);
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1920, 1080);
+            ClientSize = new Size(1105, 1080);
             Controls.Add(cbForm);
-            Controls.Add(lblCASolution);
             Controls.Add(metroSetPanel6);
             Controls.Add(metroSetPanel5);
             Controls.Add(metroSetPanel4);
             Controls.Add(metroSetPanel1);
+            Cursor = Cursors.Default;
             Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "MainMenu";
@@ -450,7 +439,7 @@
             ShowLeftRect = false;
             StartPosition = FormStartPosition.CenterScreen;
             Style = MetroSet_UI.Enums.Style.Dark;
-            Text = "LINEAGRAMMING SOLUTIONS";
+            Text = "LP Solver";
             TextColor = Color.FromArgb(65, 177, 225);
             ThemeName = "MetroDark";
             WindowState = FormWindowState.Maximized;
