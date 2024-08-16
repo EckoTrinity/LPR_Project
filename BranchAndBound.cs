@@ -235,8 +235,8 @@ namespace LPR381_Project
                     var newBranch = new BranchTable(currentBranch.Level + (i + 1), ConvertListToArray(table), columnHeaders, rowHeaders);
                     newBranch = ApplyConstraint(constraints[i], newBranch, i % 2 == 0);
 
-                    var simplexSolver = new Simplex(newBranch.Table, problemType);
-                    var pivotTables = simplexSolver.DualSimplexAlgorithm();
+                    var simplexSolver = new SimplexSolver(newBranch.Table, problemType);
+                    var pivotTables = simplexSolver.SolveDualSimplex();
                     var updatedColumnHeaders = new List<string>(columnHeaders) { i % 2 == 0 ? "S" : "E" };
                     var updatedRowHeaders = new List<string>(rowHeaders) { (int.Parse(rowHeaders.Last()) + 1).ToString() };
 

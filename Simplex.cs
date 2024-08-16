@@ -1,450 +1,266 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LPR381_Project
 {
-    internal class Simplex
+    internal class SimplexSolver
     {
-        private double[,] initialTable;
-        private string problemType;
+        private double[,] initialTableau;
+        private string optimizationType;
 
-        public Simplex(double[,] initialTable, string problemType)
+        public SimplexSolver(double[,] initialTableau, string optimizationType)
         {
-            this.InitialTable = initialTable;
-            this.ProblemType = problemType;
+            this.InitialTableau = initialTableau;
+            this.OptimizationType = optimizationType;
         }
 
-        public double[,] InitialTable { get => initialTable; set => initialTable = value; }
-        public string ProblemType { get => problemType; set => problemType = value; }
+        public double[,] InitialTableau { get => initialTableau; set => initialTableau = value; }
+        public string OptimizationType { get => optimizationType; set => optimizationType = value; }
 
-        // Algorithm to pivot on a given table.
-        private double[,] PivotTable(double[,] initialTableArray, int pivotColumnIndex, int pivotRowIndex)
+        // Method to perform pivot operation on the tableau.
+        private double[,] PerformPivot(double[,] tableau, int pivotColIndex, int pivotRowIndex)
         {
-            double[,] outTableArray = new double[initialTableArray.GetLength(0), initialTableArray.GetLength(1)];
-            for (int i = 0; i < initialTableArray.GetLength(0); i++)
+            double[,] newTableau = new double[tableau.GetLength(0), tableau.GetLength(1)];
+
+            // Perform the pivot operations
+            for (int row = 0; row < tableau.GetLength(0); row++)
             {
-                for (int j = 0; j < initialTableArray.GetLength(1); j++)
+                for (int col = 0; col < tableau.GetLength(1); col++)
                 {
-                    double value = initialTableArray[i, j] - (initialTableArray[i, pivotColumnIndex] * (initialTableArray[pivotRowIndex, j] / initialTableArray[pivotRowIndex, pivotColumnIndex]));
-                    if (value.ToString().Contains(".9999"))
+                    double elementValue = tableau[row, col] - (tableau[row, pivotColIndex] * (tableau[pivotRowIndex, col] / tableau[pivotRowIndex, pivotColIndex]));
+                    if (elementValue.ToString().Contains(".9999"))
                     {
-                        value = Math.Ceiling(value);
+                        elementValue = Math.Ceiling(elementValue);
                     }
-                    outTableArray[i, j] = value;
+                    newTableau[row, col] = elementValue;
                 }
             }
 
-            for (int i = 0; i < initialTableArray.GetLength(0); i++)
+            // Normalize the pivot row
+            for (int col = 0; col < tableau.GetLength(1); col++)
             {
-                for (int j = 0; j < initialTableArray.GetLength(1); j++)
+                double elementValue = tableau[pivotRowIndex, col] / tableau[pivotRowIndex, pivotColIndex];
+                if (elementValue.ToString().Contains(".9999"))
                 {
-                    double value = initialTableArray[pivotRowIndex, j] / initialTableArray[pivotRowIndex, pivotColumnIndex];
-                    if (value.ToString().Contains(".9999"))
-                    {
-                        value = Math.Ceiling(value);
-                    }
-                    outTableArray[pivotRowIndex, j] = value;
+                    elementValue = Math.Ceiling(elementValue);
                 }
+                newTableau[pivotRowIndex, col] = elementValue;
             }
 
-            return outTableArray;
+            return newTableau;
         }
 
-        public List<double[,]> DualSimplexAlgorithm()
+        // Dual Simplex Algorithm
+        public List<double[,]> SolveDualSimplex()
         {
-            List<double[,]> tables = new List<double[,]>();
-
-            tables.Add(InitialTable);
-            bool simplexOptimal = false;
+            List<double[,]> tableaus = new List<double[,]>();
+            tableaus.Add(InitialTableau);
+            bool optimalSolutionFound = false;
 
             do
             {
-                double[,] table = tables[tables.Count - 1];
+                double[,] currentTableau = tableaus[tableaus.Count - 1];
+                int rowCount = currentTableau.GetLength(0);
+                int colCount = currentTableau.GetLength(1);
 
-                int rows = table.GetLength(0);
-                int columns = table.GetLength(1);
+                int pivotRow = -1;
+                double minRatio = double.MaxValue;
+                int pivotCol = -1;
 
-                int pivotRowIndex = -1;
-
-                double pivotCol = 1000000;
-                int pivotColIndex = -1;
-
-                // Find the minimum value in the last column
-                double minValue = 0;
-                for (int i = 1; i < rows; i++)
+                // Find the row with the most negative RHS value
+                double minRHS = 0;
+                for (int row = 1; row < rowCount; row++)
                 {
-                    double currentValue = table[i, columns - 1];
-
-                    if (double.IsNegative(currentValue) && currentValue < minValue)
+                    double rhsValue = currentTableau[row, colCount - 1];
+                    if (rhsValue < minRHS)
                     {
-                        pivotRowIndex = i;
-                        minValue = currentValue;
+                        pivotRow = row;
+                        minRHS = rhsValue;
                     }
                 }
 
-                //No negative was found in the rhs
-                if (minValue >= 0)
+                if (minRHS >= 0)
                 {
-                    //Pivot selection for MAX problem
-                    if (ProblemType == "max")
+                    // Pivot column selection for maximization problems
+                    if (OptimizationType == "max")
                     {
-                        minValue = 0;
-                        for (int i = 0; i < table.GetLength(1) - 1; i++)
+                        double minCost = 0;
+                        for (int col = 0; col < colCount - 1; col++)
                         {
-                            double currentValue = table[0, i];
-                            if (double.IsNegative(currentValue) && currentValue < minValue)
+                            double costValue = currentTableau[0, col];
+                            if (costValue < minCost)
                             {
-                                pivotColIndex = i;
-                                minValue = currentValue;
+                                pivotCol = col;
+                                minCost = costValue;
                             }
                         }
-
                     }
-                    //Pivot selection for MIN problem
+                    // Pivot column selection for minimization problems
                     else
                     {
-                        minValue = 0;
-                        for (int i = 0; i < table.GetLength(1) - 1; i++)
+                        double maxCost = 0;
+                        for (int col = 0; col < colCount - 1; col++)
                         {
-                            double currentValue = table[0, i];
-                            if (!double.IsNegative(currentValue) && currentValue > minValue)
+                            double costValue = currentTableau[0, col];
+                            if (costValue > maxCost)
                             {
-                                pivotColIndex = i;
-                                minValue = currentValue;
+                                pivotCol = col;
+                                maxCost = costValue;
                             }
                         }
                     }
 
-                    if (pivotColIndex == -1)
+                    if (pivotCol == -1)
                     {
-                        simplexOptimal = true;
+                        optimalSolutionFound = true;
                         break;
                     }
 
-                    //pivot row selection
-                    minValue = 100000;
-                    for (int i = 1; i < table.GetLength(0); i++)
+                    // Find the pivot row
+                    minRatio = double.MaxValue;
+                    for (int row = 1; row < rowCount; row++)
                     {
-                        double currentValue = table[i, table.GetLength(1) - 1] / table[i, pivotColIndex];
-
-                        if (currentValue < minValue && !double.IsNegative(currentValue) && !double.IsNaN(currentValue))
+                        double ratio = currentTableau[row, colCount - 1] / currentTableau[row, pivotCol];
+                        if (ratio < minRatio && ratio >= 0)
                         {
-                            pivotRowIndex = i;
-                            minValue = currentValue;
+                            pivotRow = row;
+                            minRatio = ratio;
                         }
                     }
 
-                    if (pivotRowIndex == -1)
+                    if (pivotRow == -1)
                     {
-                        simplexOptimal = true;
+                        optimalSolutionFound = true;
                         break;
                     }
 
-                    //Adds table to solution
-                    tables.Add(PivotTable(table, pivotColIndex, pivotRowIndex));
+                    tableaus.Add(PerformPivot(currentTableau, pivotCol, pivotRow));
                 }
-                //Negative was found in the rhs following dual
                 else
                 {
-
-                    if (pivotRowIndex == -1)
+                    if (pivotRow == -1)
                     {
-                        simplexOptimal = true;
+                        optimalSolutionFound = true;
                         break;
                     }
 
-                    //Dual pivot col selection
-                    for (int j = 0; j < table.GetLength(1) - 1; j++)
+                    // Find the pivot column for the dual simplex method
+                    for (int col = 0; col < colCount - 1; col++)
                     {
-                        double currentValue = Math.Abs(table[0, j] / table[pivotRowIndex, j]);
-                        //Console.WriteLine(currentValue);
-
-                        if (table[pivotRowIndex, j] <= 0 && currentValue < pivotCol)
+                        double ratio = Math.Abs(currentTableau[0, col] / currentTableau[pivotRow, col]);
+                        if (currentTableau[pivotRow, col] <= 0 && ratio < minRatio)
                         {
-                            pivotCol = currentValue;
-                            pivotColIndex = j;
+                            minRatio = ratio;
+                            pivotCol = col;
                         }
                     }
 
-                    if (pivotColIndex == -1)
+                    if (pivotCol == -1)
                     {
-                        simplexOptimal = true;
+                        optimalSolutionFound = true;
                         break;
                     }
 
-                    //Adds table to solution
-                    tables.Add(PivotTable(table, pivotColIndex, pivotRowIndex));
+                    tableaus.Add(PerformPivot(currentTableau, pivotCol, pivotRow));
                 }
 
-            } while (!simplexOptimal);
+            } while (!optimalSolutionFound);
 
-            return tables;
+            return tableaus;
         }
 
-        public List<double[,]> PrimalSimplexAlgorithm()
+        // Primal Simplex Algorithm
+        public List<double[,]> SolvePrimalSimplex()
         {
-            List<double[,]> tables = new List<double[,]>();
-
-            tables.Add(InitialTable);
-            bool simplexOptimal = false;
+            List<double[,]> tableaus = new List<double[,]>();
+            tableaus.Add(InitialTableau);
+            bool optimalSolutionFound = false;
 
             do
             {
-                double[,] table = tables[tables.Count - 1];
+                double[,] currentTableau = tableaus[tableaus.Count - 1];
+                int rowCount = currentTableau.GetLength(0);
+                int colCount = currentTableau.GetLength(1);
 
-                int rows = table.GetLength(0);
-                int columns = table.GetLength(1);
+                int pivotRow = -1;
+                double minRatio = double.MaxValue;
+                int pivotCol = -1;
 
-                int pivotRowIndex = -1;
-
-                double pivotCol = 1000000;
-                int pivotColIndex = -1;
-
-                // Find the minimum value in the last column
-                double minValue = 0;
-                for (int i = 1; i < rows; i++)
+                double minRHS = 0;
+                for (int row = 1; row < rowCount; row++)
                 {
-                    double currentValue = table[i, columns - 1];
-
-                    if (double.IsNegative(currentValue) && currentValue < minValue)
+                    double rhsValue = currentTableau[row, colCount - 1];
+                    if (rhsValue < minRHS)
                     {
-                        pivotRowIndex = i;
-                        minValue = currentValue;
+                        pivotRow = row;
+                        minRHS = rhsValue;
                     }
                 }
 
-                //No negative was found in the rhs
-                if (minValue >= 0)
+                if (minRHS >= 0)
                 {
-                    //Pivot selection for MAX problem
-                    if (ProblemType == "max")
+                    if (OptimizationType == "max")
                     {
-                        minValue = 0;
-                        for (int i = 0; i < table.GetLength(1) - 1; i++)
+                        double minCost = 0;
+                        for (int col = 0; col < colCount - 1; col++)
                         {
-                            double currentValue = table[0, i];
-                            if (double.IsNegative(currentValue) && currentValue < minValue)
+                            double costValue = currentTableau[0, col];
+                            if (costValue < minCost)
                             {
-                                pivotColIndex = i;
-                                minValue = currentValue;
+                                pivotCol = col;
+                                minCost = costValue;
                             }
                         }
-
                     }
-                    //Pivot selection for MIN problem
                     else
                     {
-                        minValue = 0;
-                        for (int i = 0; i < table.GetLength(1) - 1; i++)
+                        double maxCost = 0;
+                        for (int col = 0; col < colCount - 1; col++)
                         {
-                            double currentValue = table[0, i];
-                            if (!double.IsNegative(currentValue) && currentValue > minValue)
+                            double costValue = currentTableau[0, col];
+                            if (costValue > maxCost)
                             {
-                                pivotColIndex = i;
-                                minValue = currentValue;
+                                pivotCol = col;
+                                maxCost = costValue;
                             }
                         }
                     }
 
-                    if (pivotColIndex == -1)
+                    if (pivotCol == -1)
                     {
-                        simplexOptimal = true;
+                        optimalSolutionFound = true;
                         break;
                     }
 
-                    //pivot row selection
-                    minValue = 100000;
-                    for (int i = 1; i < table.GetLength(0); i++)
+                    minRatio = double.MaxValue;
+                    for (int row = 1; row < rowCount; row++)
                     {
-                        double currentValue = table[i, table.GetLength(1) - 1] / table[i, pivotColIndex];
-
-                        if (currentValue < minValue && !double.IsNegative(currentValue) && !double.IsNaN(currentValue))
+                        double ratio = currentTableau[row, colCount - 1] / currentTableau[row, pivotCol];
+                        if (ratio < minRatio && ratio >= 0)
                         {
-                            pivotRowIndex = i;
-                            minValue = currentValue;
+                            pivotRow = row;
+                            minRatio = ratio;
                         }
                     }
 
-                    if (pivotRowIndex == -1)
+                    if (pivotRow == -1)
                     {
-                        simplexOptimal = true;
+                        optimalSolutionFound = true;
                         break;
                     }
 
-                    //Adds table to solution
-                    tables.Add(PivotTable(table, pivotColIndex, pivotRowIndex));
-                }
-                //Negative was found in the rhs following dual
-                else
-                {
-
-                    tables.Add(new double[table.GetLength(0), table.GetLength(1)]);
-                    break;
-                }
-
-            } while (!simplexOptimal);
-
-            return tables;
-        }
-
-        public List<double[,]> TwoPhaseAlgorithm(List<int> artificialColumns)
-        {
-            List<double[,]> tables = new List<double[,]>();
-
-            tables.Add(InitialTable);
-            bool twoPhaseOptimal = false;
-            do
-            {
-                bool valid = false;
-                int pivotRowIndex = -1;
-                int pivotColIndex = -1;
-
-
-                double[,] table = tables[tables.Count - 1];
-
-                for (int i = 0; i < table.GetLength(1); i++)
-                {
-                    if (table[0, i] > 0)
-                    {
-                        valid = true;
-                    }
-                }
-
-                if (valid)
-                {
-                    //Select pivot column using W
-                    double maxValue = 0;
-                    for (int i = 0; i < table.GetLength(1) - 1; i++)
-                    {
-                        double currentValue = table[0, i];
-
-                        if (currentValue > maxValue && !double.IsNegative(currentValue))
-                        {
-                            maxValue = currentValue;
-                            pivotColIndex = i;
-                        }
-                    }
+                    tableaus.Add(PerformPivot(currentTableau, pivotCol, pivotRow));
                 }
                 else
                 {
-                    //Select pivot col using Z
-                    double maxValue = 0;
-                    for (int i = 0; i < table.GetLength(1) - 1; i++)
-                    {
-                        if (!artificialColumns.Contains(i))
-                        {
-                            double currentValue = table[1, i];
-
-                            if (ProblemType == "max")
-                            {
-                                if (currentValue < maxValue && double.IsNegative(currentValue))
-                                {
-                                    maxValue = currentValue;
-                                    pivotColIndex = i;
-                                }
-                            }
-                            else
-                            {
-                                if (currentValue > maxValue && !double.IsNegative(currentValue))
-                                {
-                                    maxValue = currentValue;
-                                    pivotColIndex = i;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (pivotColIndex == -1)
-                {
-                    twoPhaseOptimal = true;
+                    tableaus.Add(new double[rowCount, colCount]);
                     break;
                 }
 
-                double minValue = 100000;
-                for (int i = 2; i < table.GetLength(0); i++)
-                {
-                    double currentValue = table[i, table.GetLength(1) - 1] / table[i, pivotColIndex];
-                    if (currentValue < minValue && !double.IsNegative(currentValue) && !double.IsNaN(currentValue))
-                    {
-                        pivotRowIndex = i;
-                        minValue = currentValue;
-                    }
-                }
+            } while (!optimalSolutionFound);
 
-                if (pivotRowIndex == -1)
-                {
-                    twoPhaseOptimal = true;
-                    break;
-                }
-
-                tables.Add(PivotTable(table, pivotColIndex, pivotRowIndex));
-
-
-            } while (!twoPhaseOptimal);
-
-            return tables;
-        }
-
-        public string PrintPrimal()
-        {
-            List<double[,]> result = PrimalSimplexAlgorithm();
-            string line = "";
-            foreach (var item in result)
-            {
-                for (int i = 0; i < item.GetLength(0); i++)
-                {
-                    for (int j = 0; j < item.GetLength(1); j++)
-                    {
-                        line += Math.Round(item[i, j], 4) + "\t";
-                    }
-                    line += "\n";
-                }
-                line += "\n";
-            }
-
-            return line;
-        }
-
-        public string PrintTwoPhase(List<double[,]> result)
-        {
-            string line = "";
-            foreach (var item in result)
-            {
-                for (int i = 0; i < item.GetLength(0); i++)
-                {
-                    for (int j = 0; j < item.GetLength(1); j++)
-                    {
-                        line += Math.Round(item[i, j], 4) + "\t";
-                    }
-                    line += "\n";
-                }
-                line += "\n";
-            }
-
-            return line;
-        }
-        public string PrintDual()
-        {
-            List<double[,]> result = DualSimplexAlgorithm();
-            string line = "";
-            foreach (var item in result)
-            {
-                for (int i = 0; i < item.GetLength(0); i++)
-                {
-                    for (int j = 0; j < item.GetLength(1); j++)
-                    {
-                        line += Math.Round(item[i, j], 4) + "\t";
-                    }
-                    line += "\n";
-                }
-                line += "\n";
-            }
-
-            return line;
+            return tableaus;
         }
     }
 }
