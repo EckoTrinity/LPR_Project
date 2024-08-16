@@ -151,7 +151,7 @@ namespace LPR381_Project
                 MessageBox.Show("The textfile was not in the correct format.\n" +
                             "Please ensure that each variable is separated by a space and there are not any additional spaces. All numbers except the rhs have signs (+/-). And should have a min/max at the start.\n"
                             , "Textfile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
         }
 
         private void btnSolve_Click(object sender, EventArgs e)
@@ -170,7 +170,7 @@ namespace LPR381_Project
                 case 0:
                     if (lm.SignRes.Contains("int") || lm.SignRes.Contains("bin"))
                     {
-                        MessageBox.Show("Solving Using Primal Simplex","Solver", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Solving Using Primal Simplex", "Solver", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     SimplexSolver sp = new SimplexSolver(lm.SimplexInitial, lm.ProblemType);
                     List<double[,]> tables = sp.SolvePrimalSimplex();
@@ -260,7 +260,7 @@ namespace LPR381_Project
 
                     for (int i = 1; i < finalTable.GetLength(0); i++)
                     {
-                        if (finalTable[i,finalTable.GetLength(1)-1] - Math.Floor(finalTable[i, finalTable.GetLength(1) - 1]) > 0)
+                        if (finalTable[i, finalTable.GetLength(1) - 1] - Math.Floor(finalTable[i, finalTable.GetLength(1) - 1]) > 0)
                         {
                             branchable = true;
                         }
@@ -532,6 +532,14 @@ namespace LPR381_Project
         private void btnCAOutputClear_Click(object sender, EventArgs e)
         {
             rtbOutput.Text = "";
+        }
+
+        private void metroSetButton1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
     }
 }

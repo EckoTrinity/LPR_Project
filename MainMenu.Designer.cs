@@ -46,6 +46,7 @@
             metroSetLabel9 = new MetroSet_UI.Controls.MetroSetLabel();
             lblSolve = new MetroSet_UI.Controls.MetroSetLabel();
             cbForm = new MetroSet_UI.Controls.MetroSetControlBox();
+            btnClose = new MetroSet_UI.Controls.MetroSetButton();
             metroSetPanel1.SuspendLayout();
             pnlDragnDrop.SuspendLayout();
             metroSetPanel4.SuspendLayout();
@@ -75,7 +76,7 @@
             // 
             lblImport.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
             lblImport.IsDerivedStyle = true;
-            lblImport.Location = new Point(7, 0);
+            lblImport.Location = new Point(7, 4);
             lblImport.Margin = new Padding(4, 0, 4, 0);
             lblImport.Name = "lblImport";
             lblImport.Size = new Size(217, 22);
@@ -92,20 +93,20 @@
             btnFile.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
             btnFile.DisabledForeColor = Color.Gray;
             btnFile.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnFile.HoverBorderColor = Color.FromArgb(95, 207, 255);
-            btnFile.HoverColor = Color.FromArgb(95, 207, 255);
+            btnFile.HoverBorderColor = Color.FromArgb(144, 228, 193);
+            btnFile.HoverColor = Color.FromArgb(144, 228, 193);
             btnFile.HoverTextColor = Color.White;
             btnFile.IsDerivedStyle = true;
-            btnFile.Location = new Point(74, 125);
+            btnFile.Location = new Point(74, 133);
             btnFile.Name = "btnFile";
-            btnFile.NormalBorderColor = Color.FromArgb(65, 177, 225);
-            btnFile.NormalColor = Color.FromArgb(65, 177, 225);
+            btnFile.NormalBorderColor = Color.Teal;
+            btnFile.NormalColor = Color.Teal;
             btnFile.NormalTextColor = Color.White;
-            btnFile.PressBorderColor = Color.FromArgb(35, 147, 195);
-            btnFile.PressColor = Color.FromArgb(35, 147, 195);
+            btnFile.PressBorderColor = Color.FromArgb(144, 228, 193);
+            btnFile.PressColor = Color.FromArgb(144, 228, 193);
             btnFile.PressTextColor = Color.White;
             btnFile.Size = new Size(117, 34);
-            btnFile.Style = MetroSet_UI.Enums.Style.Light;
+            btnFile.Style = MetroSet_UI.Enums.Style.Custom;
             btnFile.StyleManager = null;
             btnFile.TabIndex = 8;
             btnFile.Text = "Browse for File";
@@ -121,7 +122,7 @@
             pnlDragnDrop.BorderThickness = 1;
             pnlDragnDrop.Controls.Add(lblDrop);
             pnlDragnDrop.IsDerivedStyle = true;
-            pnlDragnDrop.Location = new Point(27, 25);
+            pnlDragnDrop.Location = new Point(36, 38);
             pnlDragnDrop.Name = "pnlDragnDrop";
             pnlDragnDrop.Size = new Size(213, 89);
             pnlDragnDrop.Style = MetroSet_UI.Enums.Style.Dark;
@@ -158,7 +159,7 @@
             metroSetPanel4.IsDerivedStyle = true;
             metroSetPanel4.Location = new Point(559, 50);
             metroSetPanel4.Name = "metroSetPanel4";
-            metroSetPanel4.Size = new Size(538, 426);
+            metroSetPanel4.Size = new Size(538, 423);
             metroSetPanel4.Style = MetroSet_UI.Enums.Style.Dark;
             metroSetPanel4.StyleManager = null;
             metroSetPanel4.TabIndex = 10;
@@ -167,24 +168,24 @@
             // 
             // btnCAOutputClear
             // 
-            btnCAOutputClear.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
-            btnCAOutputClear.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
+            btnCAOutputClear.DisabledBackColor = Color.Maroon;
+            btnCAOutputClear.DisabledBorderColor = Color.Maroon;
             btnCAOutputClear.DisabledForeColor = Color.Gray;
             btnCAOutputClear.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCAOutputClear.HoverBorderColor = Color.FromArgb(95, 207, 255);
-            btnCAOutputClear.HoverColor = Color.FromArgb(95, 207, 255);
+            btnCAOutputClear.HoverBorderColor = Color.FromArgb(252, 61, 57);
+            btnCAOutputClear.HoverColor = Color.FromArgb(252, 61, 57);
             btnCAOutputClear.HoverTextColor = Color.White;
             btnCAOutputClear.IsDerivedStyle = true;
-            btnCAOutputClear.Location = new Point(203, 3);
+            btnCAOutputClear.Location = new Point(413, 4);
             btnCAOutputClear.Name = "btnCAOutputClear";
-            btnCAOutputClear.NormalBorderColor = Color.FromArgb(65, 177, 225);
-            btnCAOutputClear.NormalColor = Color.FromArgb(65, 177, 225);
+            btnCAOutputClear.NormalBorderColor = Color.FromArgb(227, 52, 55);
+            btnCAOutputClear.NormalColor = Color.FromArgb(227, 52, 55);
             btnCAOutputClear.NormalTextColor = Color.White;
-            btnCAOutputClear.PressBorderColor = Color.FromArgb(35, 147, 195);
-            btnCAOutputClear.PressColor = Color.FromArgb(35, 147, 195);
+            btnCAOutputClear.PressBorderColor = Color.FromArgb(252, 61, 57);
+            btnCAOutputClear.PressColor = Color.FromArgb(252, 61, 57);
             btnCAOutputClear.PressTextColor = Color.White;
             btnCAOutputClear.Size = new Size(117, 32);
-            btnCAOutputClear.Style = MetroSet_UI.Enums.Style.Light;
+            btnCAOutputClear.Style = MetroSet_UI.Enums.Style.Custom;
             btnCAOutputClear.StyleManager = null;
             btnCAOutputClear.TabIndex = 10;
             btnCAOutputClear.Text = "Clear";
@@ -198,7 +199,7 @@
             lblCASolution.IsDerivedStyle = true;
             lblCASolution.Location = new Point(3, 3);
             lblCASolution.Name = "lblCASolution";
-            lblCASolution.Size = new Size(208, 23);
+            lblCASolution.Size = new Size(205, 23);
             lblCASolution.Style = MetroSet_UI.Enums.Style.Dark;
             lblCASolution.StyleManager = null;
             lblCASolution.TabIndex = 7;
@@ -216,28 +217,16 @@
             rtbOutput.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
             rtbOutput.HoverColor = Color.FromArgb(170, 170, 170);
             rtbOutput.IsDerivedStyle = true;
-            rtbOutput.Lines = new string[]
-    {
-    "",
-    "",
-    "",
-    "\t\t\t",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "\t\t\t\tNothing to see here..."
-    };
+            rtbOutput.Lines = (new string[] { "", "", "", "\t\t\t", "", "", "", "", "", "\t\t\t\tFind a solution first..." });
             rtbOutput.Location = new Point(3, 38);
             rtbOutput.MaxLength = 32767;
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = false;
-            rtbOutput.Size = new Size(527, 385);
+            rtbOutput.Size = new Size(527, 382);
             rtbOutput.Style = MetroSet_UI.Enums.Style.Dark;
             rtbOutput.StyleManager = null;
             rtbOutput.TabIndex = 6;
-            rtbOutput.Text = "\n\n\n\t\t\t\n\n\n\n\n\n\t\t\t\tNothing to see here...";
+            rtbOutput.Text = "\n\n\n\t\t\t\n\n\n\n\n\n\t\t\t\tFind a solution first...";
             rtbOutput.ThemeAuthor = "Narwin";
             rtbOutput.ThemeName = "MetroDark";
             rtbOutput.WordWrap = true;
@@ -270,15 +259,15 @@
             rtbFileOutput.HoverColor = Color.FromArgb(170, 170, 170);
             rtbFileOutput.IsDerivedStyle = true;
             rtbFileOutput.Lines = null;
-            rtbFileOutput.Location = new Point(7, 23);
+            rtbFileOutput.Location = new Point(7, 38);
             rtbFileOutput.MaxLength = 32767;
             rtbFileOutput.Name = "rtbFileOutput";
             rtbFileOutput.ReadOnly = false;
-            rtbFileOutput.Size = new Size(252, 397);
+            rtbFileOutput.Size = new Size(252, 382);
             rtbFileOutput.Style = MetroSet_UI.Enums.Style.Dark;
             rtbFileOutput.StyleManager = null;
             rtbFileOutput.TabIndex = 9;
-            rtbFileOutput.Text = "No file yet...";
+            rtbFileOutput.Text = "Please add a file first...";
             rtbFileOutput.ThemeAuthor = "Narwin";
             rtbFileOutput.ThemeName = "MetroDark";
             rtbFileOutput.WordWrap = true;
@@ -287,7 +276,7 @@
             // 
             lblFileOutput.Font = new Font("Microsoft Sans Serif", 13F, FontStyle.Regular, GraphicsUnit.Point);
             lblFileOutput.IsDerivedStyle = true;
-            lblFileOutput.Location = new Point(7, 0);
+            lblFileOutput.Location = new Point(7, 4);
             lblFileOutput.Margin = new Padding(4, 0, 4, 0);
             lblFileOutput.Name = "lblFileOutput";
             lblFileOutput.Size = new Size(184, 22);
@@ -319,24 +308,24 @@
             // 
             // btnSolve
             // 
-            btnSolve.DisabledBackColor = Color.FromArgb(120, 65, 177, 225);
-            btnSolve.DisabledBorderColor = Color.FromArgb(120, 65, 177, 225);
+            btnSolve.DisabledBackColor = Color.DarkGreen;
+            btnSolve.DisabledBorderColor = Color.DarkGreen;
             btnSolve.DisabledForeColor = Color.Gray;
             btnSolve.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSolve.HoverBorderColor = Color.FromArgb(95, 207, 255);
-            btnSolve.HoverColor = Color.FromArgb(95, 207, 255);
+            btnSolve.HoverBorderColor = Color.FromArgb(83, 215, 105);
+            btnSolve.HoverColor = Color.FromArgb(83, 215, 105);
             btnSolve.HoverTextColor = Color.White;
             btnSolve.IsDerivedStyle = true;
             btnSolve.Location = new Point(74, 73);
             btnSolve.Name = "btnSolve";
-            btnSolve.NormalBorderColor = Color.FromArgb(65, 177, 225);
-            btnSolve.NormalColor = Color.FromArgb(65, 177, 225);
+            btnSolve.NormalBorderColor = Color.FromArgb(70, 194, 99);
+            btnSolve.NormalColor = Color.FromArgb(70, 194, 99);
             btnSolve.NormalTextColor = Color.White;
-            btnSolve.PressBorderColor = Color.FromArgb(35, 147, 195);
-            btnSolve.PressColor = Color.FromArgb(35, 147, 195);
+            btnSolve.PressBorderColor = Color.FromArgb(83, 215, 105);
+            btnSolve.PressColor = Color.FromArgb(83, 215, 105);
             btnSolve.PressTextColor = Color.White;
             btnSolve.Size = new Size(117, 34);
-            btnSolve.Style = MetroSet_UI.Enums.Style.Light;
+            btnSolve.Style = MetroSet_UI.Enums.Style.Custom;
             btnSolve.StyleManager = null;
             btnSolve.TabIndex = 9;
             btnSolve.Text = "Solve";
@@ -412,7 +401,7 @@
             cbForm.CloseNormalForeColor = Color.Gray;
             cbForm.DisabledForeColor = Color.DimGray;
             cbForm.IsDerivedStyle = true;
-            cbForm.Location = new Point(997, -274);
+            cbForm.Location = new Point(994, -279);
             cbForm.MaximizeBox = true;
             cbForm.MaximizeHoverBackColor = Color.FromArgb(238, 238, 238);
             cbForm.MaximizeHoverForeColor = Color.Gray;
@@ -430,15 +419,43 @@
             cbForm.ThemeAuthor = "Narwin";
             cbForm.ThemeName = "MetroLite";
             // 
+            // btnClose
+            // 
+            btnClose.DisabledBackColor = Color.Maroon;
+            btnClose.DisabledBorderColor = Color.Maroon;
+            btnClose.DisabledForeColor = Color.Gray;
+            btnClose.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnClose.HoverBorderColor = Color.Red;
+            btnClose.HoverColor = Color.Red;
+            btnClose.HoverTextColor = Color.White;
+            btnClose.IsDerivedStyle = true;
+            btnClose.Location = new Point(1079, 0);
+            btnClose.Name = "btnClose";
+            btnClose.NormalBorderColor = Color.Black;
+            btnClose.NormalColor = Color.FromArgb(192, 0, 0);
+            btnClose.NormalTextColor = Color.White;
+            btnClose.PressBorderColor = Color.Red;
+            btnClose.PressColor = Color.Red;
+            btnClose.PressTextColor = Color.White;
+            btnClose.Size = new Size(18, 18);
+            btnClose.Style = MetroSet_UI.Enums.Style.Custom;
+            btnClose.StyleManager = null;
+            btnClose.TabIndex = 11;
+            btnClose.Text = "X";
+            btnClose.ThemeAuthor = "Narwin";
+            btnClose.ThemeName = "MetroLite";
+            btnClose.Click += metroSetButton1_Click;
+            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(14F, 29F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = SystemColors.ButtonFace;
-            BackgroundColor = Color.FromArgb(61, 61, 58);
+            BackgroundColor = Color.FromArgb(109, 152, 145);
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1105, 494);
+            ClientSize = new Size(1098, 485);
+            Controls.Add(btnClose);
             Controls.Add(cbForm);
             Controls.Add(metroSetPanel6);
             Controls.Add(metroSetPanel5);
@@ -449,12 +466,10 @@
             Name = "MainMenu";
             Padding = new Padding(12, 90, 12, 12);
             ShowLeftRect = false;
-            StartPosition = FormStartPosition.CenterScreen;
             Style = MetroSet_UI.Enums.Style.Custom;
             Text = "LP Solver";
             TextColor = Color.FromArgb(227, 235, 138);
             ThemeName = "MetroDark";
-            WindowState = FormWindowState.Maximized;
             Load += MainMenu_Load;
             metroSetPanel1.ResumeLayout(false);
             pnlDragnDrop.ResumeLayout(false);
@@ -483,5 +498,6 @@
         private MetroSet_UI.Controls.MetroSetLabel lblSolve;
         private MetroSet_UI.Controls.MetroSetControlBox cbForm;
         private MetroSet_UI.Controls.MetroSetButton btnCAOutputClear;
+        private MetroSet_UI.Controls.MetroSetButton btnClose;
     }
 }
