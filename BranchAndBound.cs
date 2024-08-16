@@ -268,7 +268,6 @@ namespace LPR381_Project
                 }
             }
 
-            // Write solutions to file
             using (var writer = new StreamWriter(filePath))
             {
                 foreach (var solution in solutions)

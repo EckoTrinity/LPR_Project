@@ -426,7 +426,7 @@ namespace LPR381_Project
         public bool CheckFeasibility(List<double[,]> result)
         {
             double[,] finalTable = result.ElementAt(result.Count - 1);
-            // Infeasible solution.
+
             double sum = 0;
             for (int i = 0; i < finalTable.GetLength(0); i++)
             {
@@ -440,7 +440,7 @@ namespace LPR381_Project
                 MessageBox.Show("The solution is infeasible given the problem and the method used.\n\nTry another method or inspect the Linear programming problem.", "Infeasible solution", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            // Unbounded solution.
+
             for (int i = 0; i < finalTable.GetLength(1); i++)
             {
                 if (finalTable[0, i] < 0)
@@ -449,7 +449,7 @@ namespace LPR381_Project
                     return false;
                 }
             }
-            // Multiple solutions.
+
             for (int i = 0; i < finalTable.GetLength(1); i++)
             {
                 if (finalTable[0, i] == 0)
@@ -471,7 +471,7 @@ namespace LPR381_Project
 
         public List<List<double>> ArrayToList(double[,] table)
         {
-            // Populate Nested lists with values from the array
+
             List<List<double>> listTable = new List<List<double>>();
 
             for (int i = 0; i < table.GetLength(0); i++)
@@ -487,7 +487,7 @@ namespace LPR381_Project
         }
         public double[,] ListToArray(List<List<double>> table)
         {
-            // Populate Nested lists with values from the array
+
             double[,] listTable = new double[table.Count, table[0].Count];
 
             for (int i = 0; i < table.Count; i++)
@@ -502,11 +502,10 @@ namespace LPR381_Project
         private bool IsBasic(int columnIndex, List<List<double>> table, int rows)
         {
             List<double> column = new List<double>();
-            //Grab values from column
+
             for (int i = 0; i < rows; i++)
             {
-                // If element is one or zero add to list (straight forward) 
-                // BUT if the element is anything else then it is a non-basic variable (IsBasic = false = non-basic and vice versa)
+
                 if (table[i][columnIndex] == 0 || table[i][columnIndex] == 1)
                 {
                     column.Add(table[i][columnIndex]);
@@ -516,7 +515,7 @@ namespace LPR381_Project
                     return false;
                 }
             }
-            // Sum of basic variable column = 1 (accounts for example: 0 1 1 which would pass the previous test)
+
             return column.Sum() == 1;
         }
 
