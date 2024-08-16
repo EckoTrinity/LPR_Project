@@ -42,7 +42,6 @@ namespace LPR381_Project
         public Matrix<double> BInverse { get; set; }
         public Matrix<double> CbvBinverse { get; set; }
 
-        //Basic Variables
         public List<Dictionary<int, int>> GetBasicVariableCoords()
         {
 
@@ -142,10 +141,10 @@ namespace LPR381_Project
             return result;
         }
 
-        // MATRIX MATH EXAMPLES:
+
         public double[,] MatrixMultiplyExample(double[] b, double[,] B)
         {
-            // Reshape the vector into a 1x3 matrix (double[,])
+
             double[,] newb = new double[1, b.Length];
             for (int i = 0; i < b.Length; i++)
             {

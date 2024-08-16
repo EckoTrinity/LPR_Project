@@ -18,12 +18,11 @@ namespace LPR381_Project
         public double[,] InitialTableau { get => initialTableau; set => initialTableau = value; }
         public string OptimizationType { get => optimizationType; set => optimizationType = value; }
 
-        // Method to perform pivot operation on the tableau.
+
         private double[,] PerformPivot(double[,] tableau, int pivotColIndex, int pivotRowIndex)
         {
             double[,] newTableau = new double[tableau.GetLength(0), tableau.GetLength(1)];
 
-            // Perform the pivot operations
             for (int row = 0; row < tableau.GetLength(0); row++)
             {
                 for (int col = 0; col < tableau.GetLength(1); col++)
@@ -37,7 +36,7 @@ namespace LPR381_Project
                 }
             }
 
-            // Normalize the pivot row
+
             for (int col = 0; col < tableau.GetLength(1); col++)
             {
                 double elementValue = tableau[pivotRowIndex, col] / tableau[pivotRowIndex, pivotColIndex];
@@ -51,7 +50,7 @@ namespace LPR381_Project
             return newTableau;
         }
 
-        // Dual Simplex Algorithm
+
         public List<double[,]> SolveDualSimplex()
         {
             List<double[,]> tableaus = new List<double[,]>();
@@ -68,7 +67,7 @@ namespace LPR381_Project
                 double minRatio = double.MaxValue;
                 int pivotCol = -1;
 
-                // Find the row with the most negative RHS value
+
                 double minRHS = 0;
                 for (int row = 1; row < rowCount; row++)
                 {
@@ -82,7 +81,7 @@ namespace LPR381_Project
 
                 if (minRHS >= 0)
                 {
-                    // Pivot column selection for maximization problems
+
                     if (OptimizationType == "max")
                     {
                         double minCost = 0;
@@ -96,7 +95,7 @@ namespace LPR381_Project
                             }
                         }
                     }
-                    // Pivot column selection for minimization problems
+
                     else
                     {
                         double maxCost = 0;
@@ -117,7 +116,7 @@ namespace LPR381_Project
                         break;
                     }
 
-                    // Find the pivot row
+
                     minRatio = double.MaxValue;
                     for (int row = 1; row < rowCount; row++)
                     {
@@ -145,7 +144,7 @@ namespace LPR381_Project
                         break;
                     }
 
-                    // Find the pivot column for the dual simplex method
+
                     for (int col = 0; col < colCount - 1; col++)
                     {
                         double ratio = Math.Abs(currentTableau[0, col] / currentTableau[pivotRow, col]);
@@ -174,7 +173,6 @@ namespace LPR381_Project
             return tableaus;
         }
 
-        // Primal Simplex Algorithm
         public List<double[,]> SolvePrimalSimplex()
         {
             List<double[,]> tableaus = new List<double[,]>();

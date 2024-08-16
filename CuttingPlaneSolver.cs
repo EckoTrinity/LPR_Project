@@ -22,7 +22,7 @@ namespace LPR381_Project
         public string ObjectiveType { get => objectiveType; set => objectiveType = value; }
         public string[] VariableRestrictions { get => variableRestrictions; set => variableRestrictions = value; }
 
-        // CUTTING PLANE ALGORITHM
+
         public List<List<double[,]>> SolveCuttingPlane()
         {
             List<List<double[,]>> allIterations = new List<List<double[,]>>();
@@ -45,7 +45,7 @@ namespace LPR381_Project
                 double bestValue = 0;
                 double smallestFractional = 10;
 
-                // Identify the row to apply the cutting plane.
+
                 for (int i = 1; i < LinearProgram.GetLength(0); i++)
                 {
                     if (!skipRows[i])
@@ -111,7 +111,7 @@ namespace LPR381_Project
                     continue;
                 }
 
-                // Generate the cut row.
+
                 List<double> cutRow = new List<double>();
                 for (int i = 0; i < LinearProgram.GetLength(1); i++)
                 {
@@ -133,7 +133,6 @@ namespace LPR381_Project
                     }
                 }
 
-                // Add the new cut row to the LP table.
                 double[,] newLinearProgram = new double[LinearProgram.GetLength(0) + 1, LinearProgram.GetLength(1) + 1];
 
                 for (int i = 0; i < newLinearProgram.GetLength(0); i++)
@@ -169,7 +168,7 @@ namespace LPR381_Project
                 skipRows.Add(false);
                 allIterations.Add(newTables);
 
-                // Check for any remaining fractional parts.
+
                 bool integerSatisfied = true;
                 for (int i = 1; i < LinearProgram.GetLength(0); i++)
                 {
@@ -212,7 +211,7 @@ namespace LPR381_Project
             }
         }
 
-        // Format results into a string.
+
         public string FormatResults()
         {
             List<List<double[,]>> iterations = SolveCuttingPlane();
